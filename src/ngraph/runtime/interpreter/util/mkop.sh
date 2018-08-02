@@ -1,11 +1,16 @@
 #!/bin/bash
 
 function emit {
-    header=$(<header.txt)
     echo ${1,,}
+    header=$(<hpp.txt)
     h2="${header//CAMEL_CASE_NAME/$1}"
     h2="${h2//LOWER_CASE_NAME/$2}"
     echo "${h2}" > /mnt/c/dev/ngraph/src/ngraph/runtime/interpreter/op/$2.hpp
+
+    header=$(<cpp.txt)
+    h2="${header//CAMEL_CASE_NAME/$1}"
+    h2="${h2//LOWER_CASE_NAME/$2}"
+    echo "${h2}" > /mnt/c/dev/ngraph/src/ngraph/runtime/interpreter/op/$2.cpp
 }
 
 emit Abs abs
@@ -55,7 +60,7 @@ emit Product product
 emit Reduce reduce
 emit ReduceWindow reduce_window
 emit Relu relu
-emit ReluBackprop relubackprop
+emit ReluBackprop relu_backprop
 emit Remainder remainder
 emit ReplaceSlice replace_slice
 emit Reshape reshape
@@ -65,6 +70,7 @@ emit ReverseSequence reverse_sequence
 emit Select select
 emit SelectAndScatter select_and_scatter
 emit Sigmoid sigmoid
+emit SigmoidBackprop sigmoid_backprop
 emit Sign sign
 emit Sin sin
 emit Sinh sinh

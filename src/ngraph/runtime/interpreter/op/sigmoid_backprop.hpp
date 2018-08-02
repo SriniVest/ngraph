@@ -20,7 +20,7 @@
 #include <vector>
 #include <iostream>
 
-#include "ngraph/op/relubackprop.hpp"
+#include "ngraph/op/sigmoid_backprop.hpp"
 #include "ngraph/runtime/host_tensor_view.hpp"
 #include "ngraph/runtime/interpreter/exec_node.hpp"
 
@@ -30,35 +30,35 @@ namespace ngraph
     {
         namespace interpreter
         {
-            class ReluBackpropExec;
+            class SigmoidBackpropExec;
         }
     }
 }
 
-class ngraph::runtime::interpreter::ReluBackpropExec : public ExecNode
+class ngraph::runtime::interpreter::SigmoidBackpropExec : public ExecNode
 {
 public:
     static ExecNode create(const ngraph::Node* node)
     {
-        std::cout << "create ReluBackprop" << std::endl;
-        return ReluBackpropExec(node);
+        std::cout << "create SigmoidBackprop" << std::endl;
+        return SigmoidBackpropExec(node);
     }
 
-    ReluBackpropExec(const ngraph::Node* node)
-        : m_node{dynamic_cast<const ngraph::op::ReluBackprop*>(node)}
+    SigmoidBackpropExec(const ngraph::Node* node)
+        : m_node{dynamic_cast<const ngraph::op::SigmoidBackprop*>(node)}
     {
         (void)m_node; // Silence compiler warning
 
-        std::cout << "ReluBackprop ctor" << std::endl;
+        std::cout << "SigmoidBackprop ctor" << std::endl;
     }
 
     template <typename T>
     void execute(const std::vector<std::shared_ptr<HostTensorView>>& out,
                  const std::vector<std::shared_ptr<HostTensorView>>& args)
     {
-        std::cout << "execute ReluBackprop" << std::endl;
+        std::cout << "execute SigmoidBackprop" << std::endl;
     }
 
 private:
-    const ngraph::op::ReluBackprop* m_node;
+    const ngraph::op::SigmoidBackprop* m_node;
 };

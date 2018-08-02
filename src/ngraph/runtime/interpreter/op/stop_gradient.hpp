@@ -16,9 +16,9 @@
 
 #pragma once
 
+#include <iostream>
 #include <memory>
 #include <vector>
-#include <iostream>
 
 #include "ngraph/op/stop_gradient.hpp"
 #include "ngraph/runtime/host_tensor_view.hpp"

@@ -16,13 +16,14 @@
 
 #pragma once
 
+#include <iostream>
 #include <memory>
 #include <vector>
-#include <iostream>
 
 #include "ngraph/op/add.hpp"
 #include "ngraph/runtime/host_tensor_view.hpp"
 #include "ngraph/runtime/interpreter/exec_node.hpp"
+#include "ngraph/runtime/reference/add.hpp"
 
 namespace ngraph
 {
@@ -56,7 +57,10 @@ public:
     void execute(const std::vector<std::shared_ptr<HostTensorView>>& out,
                  const std::vector<std::shared_ptr<HostTensorView>>& args)
     {
-        std::cout << "execute Add" << std::endl;
+        reference::add<T>(args[0]->get_data_ptr<T>(),
+                          args[1]->get_data_ptr<T>(),
+                          out[0]->get_data_ptr<T>(),
+                          out[0]->get_element_count());
     }
 
 private:

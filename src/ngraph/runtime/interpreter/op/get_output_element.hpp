@@ -16,9 +16,9 @@
 
 #pragma once
 
+#include <iostream>
 #include <memory>
 #include <vector>
-#include <iostream>
 
 #include "ngraph/op/get_output_element.hpp"
 #include "ngraph/runtime/host_tensor_view.hpp"

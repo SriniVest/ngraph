@@ -23,6 +23,7 @@
 #include "ngraph/op/max_pool.hpp"
 #include "ngraph/runtime/host_tensor_view.hpp"
 #include "ngraph/runtime/interpreter/exec_node.hpp"
+#include "ngraph/runtime/reference/max_pool.hpp"
 
 namespace ngraph
 {

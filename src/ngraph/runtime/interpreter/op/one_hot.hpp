@@ -23,6 +23,7 @@
 #include "ngraph/op/one_hot.hpp"
 #include "ngraph/runtime/host_tensor_view.hpp"
 #include "ngraph/runtime/interpreter/exec_node.hpp"
+#include "ngraph/runtime/reference/one_hot.hpp"
 
 namespace ngraph
 {

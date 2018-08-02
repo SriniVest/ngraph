@@ -23,6 +23,7 @@
 #include "ngraph/op/sigmoid_backprop.hpp"
 #include "ngraph/runtime/host_tensor_view.hpp"
 #include "ngraph/runtime/interpreter/exec_node.hpp"
+#include "ngraph/runtime/reference/sigmoid_backprop.hpp"
 
 namespace ngraph
 {

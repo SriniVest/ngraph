@@ -23,6 +23,7 @@
 #include "ngraph/op/sinh.hpp"
 #include "ngraph/runtime/host_tensor_view.hpp"
 #include "ngraph/runtime/interpreter/exec_node.hpp"
+#include "ngraph/runtime/reference/sinh.hpp"
 
 namespace ngraph
 {

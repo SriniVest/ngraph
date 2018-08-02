@@ -16,9 +16,9 @@
 
 #pragma once
 
+#include <iostream>
 #include <memory>
 #include <vector>
-#include <iostream>
 
 #include "ngraph/op/function_call.hpp"
 #include "ngraph/runtime/host_tensor_view.hpp"

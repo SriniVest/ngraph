@@ -23,6 +23,7 @@
 #include "ngraph/op/or.hpp"
 #include "ngraph/runtime/host_tensor_view.hpp"
 #include "ngraph/runtime/interpreter/exec_node.hpp"
+#include "ngraph/runtime/reference/or.hpp"
 
 namespace ngraph
 {

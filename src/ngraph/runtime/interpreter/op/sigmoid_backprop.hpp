@@ -16,9 +16,9 @@
 
 #pragma once
 
+#include <iostream>
 #include <memory>
 #include <vector>
-#include <iostream>
 
 #include "ngraph/op/sigmoid_backprop.hpp"
 #include "ngraph/runtime/host_tensor_view.hpp"
@@ -36,10 +36,11 @@ namespace ngraph
     }
 }
 
-class ngraph::runtime::interpreter::SigmoidBackpropExec : public ExecNode
+template <typename T>
+class ngraph::runtime::interpreter::SigmoidBackpropExec : public ExecNode<T>
 {
 public:
-    static ExecNode create(const ngraph::Node* node)
+    static ExecNode<T> create(const ngraph::Node* node)
     {
         std::cout << "create SigmoidBackprop" << std::endl;
         return SigmoidBackpropExec(node);
@@ -53,14 +54,8 @@ public:
         std::cout << "SigmoidBackprop ctor" << std::endl;
     }
 
-    void execute_(const std::vector<std::shared_ptr<HostTensorView>>& out,
-                  const std::vector<std::shared_ptr<HostTensorView>>& args) override
-    {
-    }
-
-    template <typename T>
     void execute(const std::vector<std::shared_ptr<HostTensorView>>& out,
-                 const std::vector<std::shared_ptr<HostTensorView>>& args)
+                 const std::vector<std::shared_ptr<HostTensorView>>& args) override
     {
         std::cout << "execute SigmoidBackprop" << std::endl;
     }

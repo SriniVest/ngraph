@@ -16,9 +16,9 @@
 
 #pragma once
 
+#include <iostream>
 #include <memory>
 #include <vector>
-#include <iostream>
 
 #include "ngraph/op/reshape.hpp"
 #include "ngraph/runtime/host_tensor_view.hpp"
@@ -36,10 +36,11 @@ namespace ngraph
     }
 }
 
-class ngraph::runtime::interpreter::ReshapeExec : public ExecNode
+template <typename T>
+class ngraph::runtime::interpreter::ReshapeExec : public ExecNode<T>
 {
 public:
-    static ExecNode create(const ngraph::Node* node)
+    static ExecNode<T> create(const ngraph::Node* node)
     {
         std::cout << "create Reshape" << std::endl;
         return ReshapeExec(node);
@@ -53,14 +54,8 @@ public:
         std::cout << "Reshape ctor" << std::endl;
     }
 
-    void execute_(const std::vector<std::shared_ptr<HostTensorView>>& out,
-                  const std::vector<std::shared_ptr<HostTensorView>>& args) override
-    {
-    }
-
-    template <typename T>
     void execute(const std::vector<std::shared_ptr<HostTensorView>>& out,
-                 const std::vector<std::shared_ptr<HostTensorView>>& args)
+                 const std::vector<std::shared_ptr<HostTensorView>>& args) override
     {
         std::cout << "execute Reshape" << std::endl;
     }

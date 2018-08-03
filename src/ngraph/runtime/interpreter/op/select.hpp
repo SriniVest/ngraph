@@ -31,6 +31,7 @@ namespace ngraph
     {
         namespace interpreter
         {
+            template <typename T>
             class SelectExec;
         }
     }

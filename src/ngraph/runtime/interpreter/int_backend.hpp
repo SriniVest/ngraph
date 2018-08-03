@@ -170,11 +170,11 @@ private:
                         const std::vector<std::shared_ptr<HostTensorView>>& inputs);
 
     template <typename T>
-    void op_engine(ExecNode& node,
+    void op_engine(ExecNode<T>& node,
                    const std::vector<std::shared_ptr<HostTensorView>>& out,
                    const std::vector<std::shared_ptr<HostTensorView>>& args)
     {
-        node.execute<T>(out, args);
+        node.execute(out, args);
         //         std::string node_op = node.description();
         //         if (node_op == "Abs")
         //         {

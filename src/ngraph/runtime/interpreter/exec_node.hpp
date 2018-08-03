@@ -17,6 +17,7 @@
 #pragma once
 
 #include "ngraph/node.hpp"
+#include "ngraph/runtime/host_tensor_view.hpp"
 
 namespace ngraph
 {
@@ -24,19 +25,24 @@ namespace ngraph
     {
         namespace interpreter
         {
+            template <typename T>
             class ExecNode;
+            class ExecNodeBase;
         }
     }
 }
 
+class ngraph::runtime::interpreter::ExecNodeBase
+{
+    virtual void execute(const std::vector<std::shared_ptr<HostTensorView>>& out,
+                         const std::vector<std::shared_ptr<HostTensorView>>& args) = 0;
+};
+
 template <typename T>
-class ngraph::runtime::interpreter::ExecNode
+class ngraph::runtime::interpreter::ExecNode : public ExecNodeBase
 {
 public:
     static ExecNode<T> create_exec(const Node* node);
-
-    virtual void execute(const std::vector<std::shared_ptr<HostTensorView>>& out,
-                         const std::vector<std::shared_ptr<HostTensorView>>& args) = 0;
 
 private:
     // using create_t = std::function<ExecNode(const Node*)>;

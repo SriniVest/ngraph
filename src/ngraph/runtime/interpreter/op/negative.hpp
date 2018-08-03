@@ -23,7 +23,6 @@
 #include "ngraph/op/negative.hpp"
 #include "ngraph/runtime/host_tensor_view.hpp"
 #include "ngraph/runtime/interpreter/exec_node.hpp"
-#include "ngraph/runtime/reference/negative.hpp"
 
 namespace ngraph
 {
@@ -31,6 +30,7 @@ namespace ngraph
     {
         namespace interpreter
         {
+            template <typename T>
             class NegativeExec;
         }
     }

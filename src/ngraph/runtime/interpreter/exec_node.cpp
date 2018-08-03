@@ -88,8 +88,8 @@ using namespace ngraph;
 
 // #define TID(a) type_index(typeid(a))
 
-unordered_map<type_index, ngraph::runtime::interpreter::ExecNode::create_t>
-    runtime::interpreter::ExecNode::s_list;
+// unordered_map<type_index, ngraph::runtime::interpreter::ExecNode::create_t>
+//     runtime::interpreter::ExecNode::s_list;
 // runtime::interpreter::ExecNode::s_list = {
 //     {TID(op::Abs), &runtime::interpreter::AbsExec::create},
 //     {TID(op::Acos), &runtime::interpreter::AcosExec::create},
@@ -159,8 +159,8 @@ unordered_map<type_index, ngraph::runtime::interpreter::ExecNode::create_t>
 //     {TID(op::Tan), &runtime::interpreter::TanExec::create},
 //     {TID(op::Tanh), &runtime::interpreter::TanhExec::create}};
 
-runtime::interpreter::ExecNode runtime::interpreter::ExecNode::create_exec(const Node* node)
-{
-    const Node& n = *node;
-    return s_list.at(type_index(typeid(n)))(node);
-}
+// runtime::interpreter::ExecNode runtime::interpreter::ExecNode::create_exec(const Node* node)
+// {
+//     // const Node& n = *node;
+//     // return s_list.at(type_index(typeid(n)))(node);
+// }

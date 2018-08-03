@@ -362,15 +362,15 @@ bool runtime::interpreter::INTBackend::call(shared_ptr<Function> function,
     return true;
 }
 
-ngraph::runtime::interpreter::ExecNode wrap_op(Node& op)
-{
-    auto handler = s_dispatcher.find(type_index(typeid(op)));
-    if (handler == s_dispatcher.end())
-    {
-        throw ngraph_error("Unhandled op during execution : " + op.description());
-    }
-    return handler->second(&op);
-}
+// ngraph::runtime::interpreter::ExecNode wrap_op(Node& op)
+// {
+//     auto handler = s_dispatcher.find(type_index(typeid(op)));
+//     if (handler == s_dispatcher.end())
+//     {
+//         throw ngraph_error("Unhandled op during execution : " + op.description());
+//     }
+//     return handler->second(&op);
+// }
 
 void runtime::interpreter::INTBackend::generate_calls(
     const element::Type& type,
@@ -378,58 +378,58 @@ void runtime::interpreter::INTBackend::generate_calls(
     const vector<shared_ptr<HostTensorView>>& outputs,
     const vector<shared_ptr<HostTensorView>>& inputs)
 {
-    ExecNode op = wrap_op(node);
+    // ExecNode op = wrap_op(node);
 
-    if (type == element::boolean)
-    {
-        op_engine<char>(op, outputs, inputs);
-    }
-    else if (type == element::f32)
-    {
-        op_engine<float>(op, outputs, inputs);
-    }
-    else if (type == element::f64)
-    {
-        op_engine<double>(op, outputs, inputs);
-    }
-    else if (type == element::i8)
-    {
-        op_engine<int8_t>(op, outputs, inputs);
-    }
-    else if (type == element::i16)
-    {
-        op_engine<int16_t>(op, outputs, inputs);
-    }
-    else if (type == element::i32)
-    {
-        op_engine<int32_t>(op, outputs, inputs);
-    }
-    else if (type == element::i64)
-    {
-        op_engine<int64_t>(op, outputs, inputs);
-    }
-    else if (type == element::u8)
-    {
-        op_engine<uint8_t>(op, outputs, inputs);
-    }
-    else if (type == element::u16)
-    {
-        op_engine<uint16_t>(op, outputs, inputs);
-    }
-    else if (type == element::u32)
-    {
-        op_engine<uint32_t>(op, outputs, inputs);
-    }
-    else if (type == element::u64)
-    {
-        op_engine<uint64_t>(op, outputs, inputs);
-    }
-    else
-    {
-        stringstream ss;
-        ss << "unsupported element type " << type << " op " << node.get_name();
-        throw ngraph_error(ss.str());
-    }
+    // if (type == element::boolean)
+    // {
+    //     op_engine<char>(op, outputs, inputs);
+    // }
+    // else if (type == element::f32)
+    // {
+    //     op_engine<float>(op, outputs, inputs);
+    // }
+    // else if (type == element::f64)
+    // {
+    //     op_engine<double>(op, outputs, inputs);
+    // }
+    // else if (type == element::i8)
+    // {
+    //     op_engine<int8_t>(op, outputs, inputs);
+    // }
+    // else if (type == element::i16)
+    // {
+    //     op_engine<int16_t>(op, outputs, inputs);
+    // }
+    // else if (type == element::i32)
+    // {
+    //     op_engine<int32_t>(op, outputs, inputs);
+    // }
+    // else if (type == element::i64)
+    // {
+    //     op_engine<int64_t>(op, outputs, inputs);
+    // }
+    // else if (type == element::u8)
+    // {
+    //     op_engine<uint8_t>(op, outputs, inputs);
+    // }
+    // else if (type == element::u16)
+    // {
+    //     op_engine<uint16_t>(op, outputs, inputs);
+    // }
+    // else if (type == element::u32)
+    // {
+    //     op_engine<uint32_t>(op, outputs, inputs);
+    // }
+    // else if (type == element::u64)
+    // {
+    //     op_engine<uint64_t>(op, outputs, inputs);
+    // }
+    // else
+    // {
+    //     stringstream ss;
+    //     ss << "unsupported element type " << type << " op " << node.get_name();
+    //     throw ngraph_error(ss.str());
+    // }
 }
 
 void runtime::interpreter::INTBackend::set_nan_check(shared_ptr<Function> func, bool enable)

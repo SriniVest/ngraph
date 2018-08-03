@@ -16,9 +16,9 @@
 
 #pragma once
 
-#include <iostream>
 #include <memory>
 #include <vector>
+#include <iostream>
 
 #include "ngraph/op/add.hpp"
 #include "ngraph/runtime/host_tensor_view.hpp"
@@ -53,14 +53,16 @@ public:
         std::cout << "Add ctor" << std::endl;
     }
 
+    void execute_(const std::vector<std::shared_ptr<HostTensorView>>& out,
+                  const std::vector<std::shared_ptr<HostTensorView>>& args) override
+    {
+    }
+
     template <typename T>
     void execute(const std::vector<std::shared_ptr<HostTensorView>>& out,
                  const std::vector<std::shared_ptr<HostTensorView>>& args)
     {
-        reference::add<T>(args[0]->get_data_ptr<T>(),
-                          args[1]->get_data_ptr<T>(),
-                          out[0]->get_data_ptr<T>(),
-                          out[0]->get_element_count());
+        std::cout << "execute Add" << std::endl;
     }
 
 private:

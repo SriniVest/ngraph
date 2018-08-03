@@ -16,13 +16,14 @@
 
 #pragma once
 
-#include <iostream>
 #include <memory>
 #include <vector>
+#include <iostream>
 
 #include "ngraph/op/parameter.hpp"
 #include "ngraph/runtime/host_tensor_view.hpp"
 #include "ngraph/runtime/interpreter/exec_node.hpp"
+#include "ngraph/runtime/reference/parameter.hpp"
 
 namespace ngraph
 {
@@ -50,6 +51,11 @@ public:
         (void)m_node; // Silence compiler warning
 
         std::cout << "Parameter ctor" << std::endl;
+    }
+
+    void execute_(const std::vector<std::shared_ptr<HostTensorView>>& out,
+                  const std::vector<std::shared_ptr<HostTensorView>>& args) override
+    {
     }
 
     template <typename T>

@@ -34,6 +34,9 @@ class ngraph::runtime::interpreter::ExecNode
 public:
     static ExecNode create_exec(const Node* node);
 
+    virtual void execute_(const std::vector<std::shared_ptr<HostTensorView>>& out,
+                          const std::vector<std::shared_ptr<HostTensorView>>& args) = 0;
+
 private:
     using create_t = std::function<ExecNode(const Node*)>;
     static std::unordered_map<std::type_index, create_t> s_list;

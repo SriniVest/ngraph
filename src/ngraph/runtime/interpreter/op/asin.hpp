@@ -53,6 +53,11 @@ public:
         std::cout << "Asin ctor" << std::endl;
     }
 
+    void execute_(const std::vector<std::shared_ptr<HostTensorView>>& out,
+                  const std::vector<std::shared_ptr<HostTensorView>>& args) override
+    {
+    }
+
     template <typename T>
     void execute(const std::vector<std::shared_ptr<HostTensorView>>& out,
                  const std::vector<std::shared_ptr<HostTensorView>>& args)

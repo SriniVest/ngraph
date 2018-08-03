@@ -2,12 +2,12 @@
 
 function emit {
     echo ${1,,}
-    header=$(<hpp.txt)
+    header=$(<template.hpp)
     h2="${header//CAMEL_CASE_NAME/$1}"
     h2="${h2//LOWER_CASE_NAME/$2}"
     echo "${h2}" > /mnt/c/dev/ngraph/src/ngraph/runtime/interpreter/op/$2.hpp
 
-    header=$(<cpp.txt)
+    header=$(<template.cpp)
     h2="${header//CAMEL_CASE_NAME/$1}"
     h2="${h2//LOWER_CASE_NAME/$2}"
     echo "${h2}" > /mnt/c/dev/ngraph/src/ngraph/runtime/interpreter/op/$2.cpp

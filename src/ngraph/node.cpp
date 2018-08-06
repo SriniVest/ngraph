@@ -82,6 +82,11 @@ void Node::set_value_type_checked(const element::Type& element_type, const Shape
     set_output_type(0, element_type, shape);
 }
 
+void Node::set_value_type_checked(const element::Type& element_type, const Shape& shape)
+{
+    set_output_type(0, element_type, shape);
+}
+
 void Node::add_output(const element::Type& element_type, const Shape& shape)
 {
     set_output_type(m_outputs.size(), element_type, shape);
